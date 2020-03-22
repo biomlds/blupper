@@ -54,12 +54,11 @@ def short_pedigree_to_long(df):
 
 
 def make_XyZ(df, response_var, fixed_factor):
-    """
-    Produce y, X, Z matrix
+    """Produce X, y, Z matrix as in Mrode RA, 2014 (p. 38)
 
     Arguments:
-        df {pd.DataFrame} -- contains info about animals
-        y {str} -- response vasriable
+        df {pd.DataFrame} -- contains info about animals (pedigree, etc.)
+        response_var {str} -- response variable
         factors {list} -- list of factors
     """
 
@@ -78,7 +77,7 @@ def A_matrix(pedigree_table):
     """Return a numerator relationship matrix
 
     Arguments:
-        pedigree_table {Pandas.DataFrame} -- pedigree written in following format:
+        pedigree_table {pandas.DataFrame} -- pedigree written in following format:
 
         Calf     Sire      Dam
             3        1        2
@@ -115,10 +114,10 @@ def A_matrix(pedigree_table):
 
 
 def A_inverse_no_inbreeding(df):
-    """Return a numerator relationship matrix
+    """Return a numerator relationship matrix as in Mrode RA, 2014 (p. 26)
 
     Arguments:
-        df {Pandas.DataFrame} -- pedigree written in following format:
+        df {pandas.DataFrame} -- pedigree written in following format:
 
         Calf     Sire      Dam
             3        1        2
@@ -167,10 +166,16 @@ def A_inverse_no_inbreeding(df):
 
 
 def mme_solution(df, sigma_sq_a, sigma_sq_e, response_var, fixed_factor=['Sex']):
-    """[summary]
+    """Solve mixed model equations as in Mrode RA, 2014 (p. 36-39)
 
     Arguments:
-        df {[type]} -- [description]
+        df {pandas.DataFrame} -- pedigree written in following format:
+        sigma_sq_a {numeric} -- variance(a)
+        sigma_sq_e {numeric} -- variance(e)
+        response_var {str} -- response variable
+
+    Keyword Arguments:
+        fixed_factor {list} -- fixed factors (default: {['Sex']})
     """
 
     alpha = sigma_sq_e/sigma_sq_a
