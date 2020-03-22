@@ -1,18 +1,9 @@
-# from unittest import TestCase
-#
-# import funniest
-
-# class TestJoke(TestCase):
-#    def test_is_string(self):
-#        s = funniest.joke()
-#
-#         self.assertTrue(isinstance(s, basestring))
-
 import pandas as pd
 import numpy as np
 import nose
-from blupper.mock_data import ex_eight_animals_data_table, ex_pedigree_six_animals
-from blupper.mme import mme_solution, A_inverse_no_inbreeding
+#from blupper.mock_data import ex_eight_animals_data_table, ex_pedigree_six_animals
+#from blupper.mme import mme_solution, A_inverse_no_inbreeding
+from blupper import *
 
 
 def test_mme_solution():
@@ -45,3 +36,23 @@ def test_A_inverse_no_inbreeding():
                              [0, -1, 0, 0, -1, 2]])
 
     assert np.array_equal(result.round(2), ground_truth)
+
+
+def test_make_XyZ():
+
+    df = ex_eight_animals_data_table()
+    response_var = 'WWG'
+
+    X, y, Z = make_XyZ(df, response_var)
+    X_true = np.array([[1, 0, 0, 1, 1],
+                       [0, 1, 1, 0, 0]]).T
+
+    Z_true = np.array([[0, 0, 0, 1, 0, 0, 0, 0],
+                       [0, 0, 0, 0, 1, 0, 0, 0],
+                       [0, 0, 0, 0, 0, 1, 0, 0],
+                       [0, 0, 0, 0, 0, 0, 1, 0],
+                       [0, 0, 0, 0, 0, 0, 0, 1]])
+
+    y_true = np.array([[4.5, 2.9, 3.9, 3.5, 5.0]]).T
+
+    assert ((X_true == X).all() & (y == y_true).all() & (Z_true == Z).all())

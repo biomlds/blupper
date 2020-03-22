@@ -53,13 +53,15 @@ def short_pedigree_to_long(df):
     return(long_df)
 
 
-def make_XyZ(df, response_var, fixed_factor):
+def make_XyZ(df, response_var, fixed_factor=['Sex']):
     """Produce X, y, Z matrix as in Mrode RA, 2014 (p. 38)
 
     Arguments:
-        df {pd.DataFrame} -- contains info about animals (pedigree, etc.)
-        response_var {str} -- response variable
-        factors {list} -- list of factors
+    df {pd.DataFrame} -- contains info about animals (pedigree, etc.)
+    response_var {str} -- response variable
+
+    Keyword Arguments:
+        fixed_factor {list} -- list of fixed factors (default: {['Sex']})
     """
 
     df_long = short_pedigree_to_long(df)
