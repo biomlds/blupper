@@ -5,7 +5,11 @@ Mixed linear model for the prediction of breeding values and estimation of fixed
 The model is implemented and tested on data from Chapter 3.
 Consider the data set in Table 3.1 for the pre-weaning gain (WWG) of beef calves (calves assumed to be reared under the same management conditions).
 
-$y_{ij} =p_{ij} +a_j +e_{ij}$
+<img src="https://render.githubusercontent.com/render/math?math=y_{ij} =p_{ij} %2B a_{j} %2B e_{ij}">
+
+where: Yij = the WWG of the jth calf of the ith sex; Pi = the fixed effect of the ith sex; Aj = random effect of the jth calf; and eij = random error effect.
+
+
 
 ----
 Example 3.1.
