@@ -35,7 +35,17 @@ def short_pedigree_to_long(df):
     extra_calfs_dict = {'Calf': extra_calfs}
 
     for colname in df.columns.values[1:]:
-        extra_calfs_dict.update({colname: ['Unknown']*len(extra_calfs)})
+        if colname == 'Sex':
+            extra_calfs_sex = []
+            for i in extra_calfs:
+                check_sex = (df[['Dam', 'Sire']] == i).apply(sum)
+                parent = check_sex.index[check_sex > 0][0]
+                extra_calfs_sex.append(parent)
+            extra_calfs_sex = ['Male' if i == 'Sire' else 'Female'
+                               for i in extra_calfs_sex]
+            extra_calfs_dict.update({'Sex': extra_calfs_sex})
+        else:
+            extra_calfs_dict.update({colname: ['Unknown']*len(extra_calfs)})
 
     top = pd.DataFrame(extra_calfs_dict)
     long_df = top.append(df).reset_index(drop=True)
