@@ -11,7 +11,7 @@ setup(name='blupper',
       license='MIT',
       packages=['blupper'],
       install_requires=[
-          'pandas', 'numpy'],
+          'pandas', 'numpy', 'clic'],
       test_suite='nose.collector',
       tests_require=['nose'],
       include_package_data=True,
