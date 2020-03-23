@@ -2,6 +2,9 @@ import click
 from blupper.mme import mme_solution
 from pandas import read_csv
 
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 if __name__ == '__main__':
 
     @click.command()
