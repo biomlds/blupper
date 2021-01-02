@@ -1,6 +1,4 @@
-import pandas as pd
 import numpy as np
-import nose
 #from blupper.mock_data import ex_eight_animals_data_table, ex_pedigree_six_animals
 #from blupper.mme import mme_solution, A_inverse_no_inbreeding
 from blupper import *
